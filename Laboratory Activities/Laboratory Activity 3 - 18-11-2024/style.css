@@ -1,0 +1,220 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@keyframes matrixBg {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+@keyframes glowPulse {
+    0% { text-shadow: 0 0 5px #0f0; }
+    50% { text-shadow: 0 0 20px #0f0, 0 0 30px #0f0; }
+    100% { text-shadow: 0 0 5px #0f0; }
+}
+
+@keyframes borderGlow {
+    0% { border-color: #0f0; box-shadow: 0 0 5px #0f0; }
+    50% { border-color: #00ff00; box-shadow: 0 0 20px #0f0; }
+    100% { border-color: #0f0; box-shadow: 0 0 5px #0f0; }
+}
+
+@keyframes matrixRain {
+    0% { background-position: 0% -100%; }
+    100% { background-position: 0% 100%; }
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Courier New', monospace;
+    background-color: #000;
+    background-image: 
+        linear-gradient(rgba(0, 255, 0, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 0, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    color: #0f0;
+    padding: 20px;
+    animation: matrixBg 20s linear infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, 
+        rgba(0, 0, 0, 0.9) 0%,
+        rgba(0, 0, 0, 0.7) 50%,
+        rgba(0, 0, 0, 0.9) 100%
+    );
+    pointer-events: none;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    position: relative;
+    z-index: 1;
+}
+
+.counter-card {
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #0f0;
+    border-radius: 10px;
+    padding: 2rem;
+    animation: borderGlow 2s infinite;
+    position: relative;
+}
+
+.counter-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        rgba(0, 255, 0, 0.1),
+        transparent 40%,
+        transparent 60%,
+        rgba(0, 255, 0, 0.1)
+    );
+    pointer-events: none;
+    border-radius: 8px;
+}
+
+h2 {
+    color: #0f0;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    animation: glowPulse 2s infinite;
+}
+
+.input-container {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+#textInput {
+    width: 100%;
+    height: 200px;
+    padding: 1rem;
+    border: 1px solid #0f0;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.9);
+    color: #0f0;
+    font-family: 'Courier New', monospace;
+    font-size: 16px;
+    resize: vertical;
+    transition: all 0.3s ease;
+}
+
+#textInput:focus {
+    outline: none;
+    border-color: #00ff00;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+#textInput::placeholder {
+    color: rgba(0, 255, 0, 0.5);
+}
+
+.stats-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.stat-box {
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid #0f0;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    text-align: center;
+    min-width: 150px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-box::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(0, 255, 0, 0.1),
+        transparent
+    );
+    animation: matrixRain 2s linear infinite;
+}
+
+.stat-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 255, 0, 0.3);
+}
+
+#wordCount, #sentenceCount {
+    font-size: 1.1rem;
+    color: #0f0;
+    font-weight: bold;
+    text-shadow: 0 0 5px #0f0;
+}
+
+.stat-box span {
+    position: relative;
+    display: inline-block;
+}
+
+.counter-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(0, 255, 0, 0.1);
+    animation: scanline 6s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(1000%); }
+}
+
+@media (max-width: 480px) {
+    .stats-container {
+        flex-direction: column;
+    }
+    
+    .stat-box {
+        width: 100%;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
+::selection {
+    background: rgba(0, 255, 0, 0.3);
+    color: #fff;
+}
