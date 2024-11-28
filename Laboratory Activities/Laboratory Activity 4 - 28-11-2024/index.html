@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paul Alexis J. Reyes - Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3182ce;
+            --secondary-color: #38a169;
+            --background-light: #f4f6f9;
+            --text-dark: #2d3748;
+            --matrix-bg: #0a192f;
+            --matrix-text: #64ffda;
+            --matrix-shadow: rgba(0, 255, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            transition: all 0.5s ease;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-title {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .card-title::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .avatar {
+            width: 230px;
+            height: 250px;
+            object-fit: cover;
+            border: 4px solid var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .mode-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .mode-toggle:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Matrix Mode Styles */
+        body.matrix-mode {
+            background-color: var(--matrix-bg);
+            color: var(--matrix-text);
+            overflow: hidden;
+            animation: matrix-animation 5s infinite;
+        }
+
+        body.matrix-mode .card {
+            background-color: rgba(15, 33, 53, 0.8);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            color: var(--matrix-text);
+        }
+
+        body.matrix-mode .card-title {
+            color: var(--matrix-text);
+        }
+
+        body.matrix-mode .card-title::after {
+            background-color: var(--matrix-text);
+        }
+
+        body.matrix-mode .mode-toggle {
+            background-color: var(--matrix-text);
+            color: var(--matrix-bg);
+        }
+
+        body.matrix-mode .card:hover {
+            box-shadow: 0 15px 35px rgba(0, 255, 255, 0.3);
+        }
+
+        @keyframes matrix-animation {
+            0% {
+                background-color: #0a192f;
+            }
+            50% {
+                background-color: #011f28;
+            }
+            100% {
+                background-color: #0a192f;
+            }
+        }
+
+        /* Matrix Text Animation */
+        .matrix-text {
+            display: inline-block;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            animation: text-flicker 2s infinite alternate;
+        }
+
+        @keyframes text-flicker {
+            0% {
+                opacity: 0.1;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Tic-Tac-Toe Styles */
+        #tic-tac-toe {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            max-width: 250px;
+            margin: 0 auto;
+        }
+
+        .cell {
+            width: 80px;
+            height: 80px;
+            border: 2px solid var(--primary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .cell:hover {
+            background-color: rgba(49, 130, 206, 0.1);
+        }
+
+        #game-status {
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <button class="mode-toggle">Toggle Matrix Mode</button>
+    
+    <div class="container">
+        <!-- Basic Info -->
+        <div class="card">
+            <img src="https://i.ibb.co/sJLP9ST/PAUL-REYES.png" alt="Paul Alexis J. Reyes" class="avatar">
+            <h2 class="card-title">Paul Alexis J. Reyes</h2>
+        </div>
+
+        <!-- Contact -->
+        <div class="card">
+            <h2 class="card-title">Basic Info</h2>
+            <p>Fullstack Developer & Tech Enthusiast</p>
+            <p><strong>Program:</strong> BS Computer Science</p>
+            <p><strong>Section:</strong> CS-3102</p>
+            <h2 class="card-title">Contact</h2>
+            <p>📧 22-00869@g.batstate.edu.ph</p>
+            <p>🐱 <a href="https://github.com/par-paulreyes" target="_blank" rel="noopener">GitHub Profile</a></p>
+            <p>📱 +63 9762674907</p>
+        </div>
+
+        <!-- Personal Info -->
+        <div class="card">
+            <h2 class="card-title">Personal Info</h2>
+            <p><strong>Birth:</strong> July 18, 2004</p>
+            <p><strong>Hobbies:</strong> Coding, Gaming, Editing</p>
+            <p><strong>Location:</strong> Philippines</p>
+        </div>
+
+        <!-- Skills & Expertise -->
+        <div class="card">
+            <h2 class="card-title">Skills & Expertise</h2>
+            <p>💻 Proficient in: HTML, CSS, JavaScript, Python</p>
+            <p>🛠 Tools: Git, Node.js, Firebase</p>
+            <p>📊 Areas of Expertise: Full-stack Development, UX/UI Design</p>
+        </div>
+
+        <!-- More About Me -->
+        <div class="card">
+            <h2 class="card-title">More About Me</h2>
+            <p><strong>Ambition:</strong> To become a leading software engineer and create innovative tech solutions.</p>
+            <p><strong>Skills:</strong> JavaScript, Python, Dart, Kotlin</p>
+            <p><strong>Fun Fact:</strong> I can code for hours fueled by coffee and lo-fi beats!</p>
+        </div>
+
+        <!-- Tic-Tac-Toe -->
+        <div class="card">
+            <h2 class="card-title">Tic-Tac-Toe</h2>
+            <div id="tic-tac-toe">
+                <div class="cell" data-index="0"></div>
+                <div class="cell" data-index="1"></div>
+                <div class="cell" data-index="2"></div>
+                <div class="cell" data-index="3"></div>
+                <div class="cell" data-index="4"></div>
+                <div class="cell" data-index="5"></div>
+                <div class="cell" data-index="6"></div>
+                <div class="cell" data-index="7"></div>
+                <div class="cell" data-index="8"></div>
+            </div>
+            <p id="game-status">Player X's turn</p>
+        </div>
+    </div>
+
+    <script>
+        const modeToggle = document.querySelector('.mode-toggle');
+        const body = document.body;
+        modeToggle.addEventListener('click', () => {
+            body.classList.toggle('matrix-mode');
+        });
+
+        // Tic-Tac-Toe Game Logic
+        const cells = document.querySelectorAll('.cell');
+        let currentPlayer = 'X';
+        let gameBoard = ['', '', '', '', '', '', '', '', ''];
+        let gameStatus = document.getElementById('game-status');
+
+        const checkWinner = () => {
+            const winPatterns = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8],
+                [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                [0, 4, 8], [2, 4, 6]
+            ];
+            for (let pattern of winPatterns) {
+                const [a, b, c] = pattern;
+                if (gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]) {
+                    return gameBoard[a];
+                }
+            }
+            return null;
+        };
+
+        const handleCellClick = (index) => {
+            if (gameBoard[index] !== '') return;
+
+            gameBoard[index] = currentPlayer;
+            cells[index].textContent = currentPlayer;
+            const winner = checkWinner();
+
+            if (winner) {
+                gameStatus.textContent = `Player ${winner} wins!`;
+                cells.forEach(cell => cell.style.pointerEvents = 'none');
+            } else {
+                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                gameStatus.textContent = `Player ${currentPlayer}'s turn`;
+            }
+        };
+
+        cells.forEach((cell, index) => {
+            cell.addEventListener('click', () => handleCellClick(index));
+        });
+    </script>
+</body>
+</html>
